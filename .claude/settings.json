@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/claude_hook_start.sh\"",
+            "timeout": 15,
+            "statusMessage": "Cargando contexto del vault…"
+          }
+        ]
+      }
+    ]
+  }
+}

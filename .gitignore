@@ -1,0 +1,10 @@
+.DS_Store
+# Artefactos de compilación LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+# Temporales
+/tmp/
+*.tmp

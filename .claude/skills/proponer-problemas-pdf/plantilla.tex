@@ -1,0 +1,93 @@
+% Plantilla — Dossier PDF de problemas de investigación (skill: proponer-problemas-pdf)
+% Compila con: pdflatex -interaction=nonstopmode -halt-on-error doc.tex  (2 pasadas)
+% Sustituye los <<MARCADORES>> y los placeholders {{...}}. No añadas paquetes exóticos: este preámbulo compila en TeX Live estándar.
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noindentfirst]{babel}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\definecolor{acc}{RGB}{30,80,140}
+\definecolor{soft}{RGB}{245,247,250}
+
+\newtheorem{problema}{Problema}
+\newtheorem*{nota}{Nota}
+
+% Caja resaltada (para "hueco unificador", advertencias, etc.)
+\newmdenv[backgroundcolor=soft,linecolor=acc,linewidth=0.6pt,
+  roundcorner=3pt,skipabove=6pt,skipbelow=6pt,
+  innertopmargin=6pt,innerbottommargin=6pt]{caja}
+
+% Atajos frecuentes (ajústalos al dominio si hace falta)
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\title{\vspace{-1.2cm}\textbf{<<TÍTULO>>}\\[4pt]
+\large <<SUBTÍTULO: p. ej. Fuentes y problemas de investigación en {{DOMINIO}}>>}
+\author{Compilación para el programa de {{DOMINIO}}}
+\date{<<FECHA>>}
+
+\begin{document}
+\maketitle
+\vspace{-0.6cm}
+
+\begin{abstract}
+\noindent <<ABSTRACT: de qué corpus se parte, qué se sintetiza, énfasis (líneas del dominio), y RB de respaldo si lo hay.>>
+\end{abstract}
+
+\section{Marco mínimo}
+<<Definiciones/contexto imprescindibles del tema, concisos, con su reducción al caso base.>>
+
+\section{Fuentes interesantes}
+\subsection*{Fundacionales}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=3pt]
+  \item \textbf{<<Autor (Fecha)>>.} <<aporte central + problema abierto/limitación (cita textual si la hay).>>
+\end{itemize}
+\subsection*{Modernas / aplicaciones}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=3pt]
+  \item \textbf{<<Autor (Fecha)>>.} <<resultado clave; qué cubre y qué NO.>>
+\end{itemize}
+
+\begin{caja}
+\textbf{Lectura conjunta (el hueco unificador).} <<Cruza qué cubre cada fuente y cuál es la intersección que ninguna cubre — de ahí salen los problemas.>>
+\end{caja}
+
+\section{Problemas de investigación propuestos}
+\subsection*{<<Grupo A: p. ej. Fundamentos>>}
+\begin{problema}[<<título corto>>]
+<<Enunciado preciso. \emph{Base:} <<fuente>>. \emph{Hueco:} <<qué falta>>.>>
+\end{problema}
+
+\subsection*{<<Grupo B>>}
+\begin{problema}[<<título corto>>]
+<<...>>
+\end{problema}
+
+\section{Priorización y advertencias}
+\begin{center}\small
+\begin{tabular}{@{}p{5.6cm}cccc@{}}
+\toprule
+\textbf{Problema} & \textbf{Tipo} & \textbf{Base} & \textbf{Novedad} & \textbf{Viabilidad}\\
+\midrule
+<<P1>> & <<...>> & <<...>> & <<...>> & <<...>>\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{caja}
+\textbf{Advertencias de prioridad.} <<Qué podría colisionar; recomendar cierre de prioridad con el agente \emph{investigador} antes de redactar. Distinguir problemas abiertos de autor vs. propuestas propias.>>
+\end{caja}
+
+\begin{thebibliography}{99}\small
+\bibitem{ref1} <<Apellido, N. (Fecha). \emph{Título}. Venue vol(núm), págs.>>
+\end{thebibliography}
+
+\end{document}
