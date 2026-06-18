@@ -27,8 +27,9 @@ description: >-
 - Solo para **cosas avanzadas** (razonamiento, contenido de nivel `{{NIVEL}}`). Nunca automático, nunca para tareas triviales, nunca para nada que requiera web/MCP/visión en el lado del segundo modelo (este solo recibe el texto que Claude le incluya en el prompt).
 
 ## Requisitos
-- `{{LLM_2A_OPINION}}` ≠ `off` y el ejecutable/credencial del segundo modelo configurados en el entorno (p. ej. `~/.zshenv`). La credencial **nunca** se escribe en el chat ni se pasa como argumento.
-- Comando/ejecutable y modelos disponibles: ver `dominio.config.md`. Por convención imprime `RAZONAMIENTO`, `RESPUESTA` y `USO`.
+- `{{LLM_2A_OPINION}}` ≠ `off`. Su valor elige el **proveedor**: `deepseek` · `openai` · `grok` · `gemini` · `perplexity`.
+- **Cliente multi-proveedor** (interfaz OpenAI): `{{VAULT_PATH}}/.claude/skills/segunda-opinion/consultar.sh`. Imprime `RAZONAMIENTO`, `RESPUESTA` y `USO`.
+- **Credencial** del proveedor en `~/.zshenv` (`DEEPSEEK_API_KEY` · `OPENAI_API_KEY` · `XAI_API_KEY` · `GEMINI_API_KEY` · `PERPLEXITY_API_KEY`); **nunca** se escribe en el chat ni se pasa como argumento. Endpoints, claves y modelos por defecto: tabla en `dominio.config.md`.
 
 ---
 
@@ -38,7 +39,11 @@ Para una pregunta de razonamiento aislada.
 
 1. **Reúne el contexto** del vault que el problema necesite (Read). El segundo modelo NO ve el vault: solo verá lo que incluyas.
 2. **Redacta el prompt completo** (contexto + pregunta) y escríbelo con Write a un temporal (p. ej. `/tmp/segunda_opinion_prompt.md`). Incluye instrucciones de rigor de nivel `{{NIVEL}}` en `{{IDIOMA}}`.
-3. **Lanza la consulta** con el comando del segundo modelo indicado en `dominio.config.md` (vía Bash).
+3. **Lanza la consulta** (vía Bash), con el proveedor de `{{LLM_2A_OPINION}}`:
+   ```bash
+   bash "{{VAULT_PATH}}/.claude/skills/segunda-opinion/consultar.sh" /tmp/segunda_opinion_prompt.md {{LLM_2A_OPINION}}
+   ```
+   (3.er argumento opcional = modelo, si quieres uno distinto al de por defecto.)
 4. **Integra críticamente**: presenta la respuesta del segundo modelo distinguiéndola de tu propio análisis; verifica su razonamiento (no lo asumas correcto) y señala errores o saltos. Guarda en el vault si el usuario lo pide.
 5. **Limpia** el temporal si tiene material sensible.
 

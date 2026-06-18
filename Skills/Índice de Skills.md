@@ -26,7 +26,7 @@ aliases: [MOC Skills]
 | `minar-corpus` | "**crea los conceptos/líneas que falten** de este corpus" | Conceptos/líneas faltantes + índice |
 | `renombrar-backlinks` | "**renombra/divide** esta nota" | Renombrado + backlinks reescritos |
 | `buscar-web` | "**busca y cita** fuentes sobre …" (citado) | Informe citado en `Resultados de búsqueda/` (`RB-NNNN`) |
-| `segunda-opinion` | "**segunda opinión** / contrasta con otro modelo" (si `LLM_2A_OPINION=on`) | Respuesta/fusión de un LLM externo |
+| `segunda-opinion` | "**segunda opinión** / contrasta con otro modelo" (si `LLM_2A_OPINION` ≠ off) | Respuesta/fusión de un LLM externo. Proveedores: **deepseek · openai · grok · gemini · perplexity** (cliente `consultar.sh`; clave en `~/.zshenv`) |
 | `proponer-problemas-pdf` | "**genera un pdf** con los problemas de estos artículos" | Dossier (PDF o Markdown) de fuentes + problemas propuestos |
 | `notificar` | "**notifica / avísame**" (si `NOTIFY=on`) | Mensaje a un canal externo |
 

@@ -22,8 +22,8 @@ El usuario quiere una búsqueda profunda en la web con rigor de nivel `{{NIVEL}}
 
 ## Motores (toggle con degradación)
 - **Por defecto (siempre disponible):** herramientas nativas `WebSearch` + `WebFetch`. Buscan, abren y leen las fuentes; son la vía base.
-- **Motor externo citado (opcional):** si `{{WEB_SEARCH_EXTRA}}` ≠ `off`, además se invoca el **motor externo de búsqueda citada configurado** (su ejecutable/comando se indica en `dominio.config.md`; típicamente devuelve secciones `INFORME`, `FUENTES` con URI, `CONSULTAS` y `USO`). Si el toggle está en `off`, se trabaja **solo** con las nativas (degradación limpia, sin error).
-- La clave/credencial del motor externo, si la hay, vive en el entorno (p. ej. `~/.zshenv`); **nunca** se escribe en el chat ni se pasa como argumento.
+- **Motor externo citado (opcional):** si `{{WEB_SEARCH_EXTRA}}` ≠ `off` (valores `gemini` o `perplexity` — los que devuelven fuentes con grounding), se invoca además el cliente `{{VAULT_PATH}}/.claude/skills/segunda-opinion/consultar.sh` con ese proveedor, pidiéndole una respuesta **con fuentes/URIs**. Si el toggle está en `off`, se trabaja **solo** con las nativas (degradación limpia, sin error).
+- La credencial del proveedor vive en `~/.zshenv` (`GEMINI_API_KEY` / `PERPLEXITY_API_KEY`); **nunca** se escribe en el chat ni se pasa como argumento. Endpoints/modelos: tabla en `dominio.config.md`.
 
 ## Procedimiento
 
@@ -31,7 +31,10 @@ El usuario quiere una búsqueda profunda en la web con rigor de nivel `{{NIVEL}}
 2. **Prepara la consulta:** redacta la consulta de investigación en `{{IDIOMA}}`, enfocada a las fuentes de referencia del `{{DOMINIO}}` (repositorios, archivos, sitios institucionales; sin límite de fecha: las fuentes clásicas cuentan).
 3. **Busca:**
    - Lanza `WebSearch`/`WebFetch` nativos para localizar y leer fuentes.
-   - Si `{{WEB_SEARCH_EXTRA}}` ≠ `off`, lanza además el motor externo configurado (vía Bash, según `dominio.config.md`) y combina sus `FUENTES` ancladas con lo nativo.
+   - Si `{{WEB_SEARCH_EXTRA}}` ≠ `off`, lanza además el motor citado (vía Bash) y combina sus fuentes ancladas con lo nativo:
+     ```bash
+     bash "{{VAULT_PATH}}/.claude/skills/segunda-opinion/consultar.sh" /tmp/buscar_extra_prompt.md {{WEB_SEARCH_EXTRA}}
+     ```
 4. **Sintetiza el informe:** estructura (1) Estado del arte, (2) Problemas abiertos / huecos, (3) Conclusiones/propuestas, (4) Lista de fuentes con sus URI. Distingue lo verificado de tus inferencias; si no encuentras algo, decláralo. Si NO hubo fuentes de grounding del motor externo, trátalo como **no anclado** (`grounded: false`).
 5. **Archiva el resultado en el vault** (carpeta `Resultados de búsqueda/`):
    - Calcula el siguiente ID secuencial:
