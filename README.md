@@ -14,6 +14,53 @@ No es un plugin de Obsidian (JS): es una **plantilla de proyecto para Claude Cod
 
 ---
 
+## Flujograma
+
+**Pipeline editorial** — el `director` orquesta; el hilo principal delega en los especialistas, con *gates* (🚦) entre fases:
+
+```mermaid
+flowchart LR
+    U(["👤 Petición"]) --> DIR{{"director · playbook"}}
+
+    DIR -->|"Modo A · descubrir"| INVA["investigador<br/>huecos + fuentes citadas"]
+    INVA --> RB[("RB-NNNN<br/>Resultados de búsqueda")]
+
+    DIR -->|"Modo B · desarrollar"| INVB["investigador<br/>cierre de prioridad"]
+    INVB -->|"🚦 sin colisión"| RED["redactor<br/>concepto · línea · guía · borrador"]
+    RED --> REV["revisor<br/>adversarial + 2ª opinión"]
+    REV -->|"🚦 corrige 🔴🟠"| PUB["publicador<br/>PDF/LaTeX · Markdown"]
+    PUB --> GUA["guardian<br/>0 enlaces rotos · índices · bitácora"]
+    GUA --> VAULT[("🧠 Vault")]
+
+    RB -.->|"alimenta"| RED
+    ANA["analista-fuentes<br/>audita artefacto externo"] --> RED
+
+    classDef agent fill:#ede7f6,stroke:#7c3aed,color:#111;
+    classDef store fill:#e8f5e9,stroke:#2e7d32,color:#111;
+    class INVA,INVB,RED,REV,PUB,GUA,ANA agent;
+    class RB,VAULT store;
+```
+
+**Estructura del vault** — cada carpeta de contenido tiene su índice (MOC) y captura un tipo de nota:
+
+```mermaid
+flowchart TD
+    SK["🛠️ Skills (captura)"] --> C["Conceptos/<br/>notas atómicas"]
+    SK --> I["Investigación/<br/>líneas y problemas abiertos"]
+    SK --> G["Guías/<br/>desarrollos extensos"]
+    SK --> F["Fuentes/<br/>documentos del dominio"]
+    WEB["🌐 buscar-web"] --> RBb[("Resultados de búsqueda/<br/>RB-NNNN")]
+    C --> MOC["📇 Índices (MOC)<br/>0 enlaces rotos · bitácora"]
+    I --> MOC
+    G --> MOC
+    F --> MOC
+    RBb --> MOC
+    classDef f fill:#fff3e0,stroke:#e65100,color:#111;
+    class C,I,G,F,RBb f;
+```
+
+---
+
 ## Qué incluye
 
 ```
