@@ -1,5 +1,11 @@
 # brain-kit
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Built for Claude Code](https://img.shields.io/badge/Claude%20Code-agents%20%2B%20skills-8A2BE2)](https://claude.com/claude-code)
+[![Obsidian](https://img.shields.io/badge/Obsidian-vault-7C3AED?logo=obsidian&logoColor=white)](https://obsidian.md)
+[![Domain-agnostic](https://img.shields.io/badge/domain-agnostic-success)](dominio.config.md)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
+
 > Un **sistema de investigación y conocimiento para Claude Code** —agentes, skills, estructura y convenciones— extraído de un vault doctoral de matemáticas y **generalizado para cualquier área** (biología, derecho, finanzas, ingeniería, humanidades…).
 
 `brain-kit` convierte una carpeta vacía en un **"segundo cerebro" operativo**: un vault tipo Obsidian con notas atómicas, líneas de investigación, guías, fuentes citadas e índices (MOC), gestionado por una **flota de agentes** y un **catálogo de skills** que capturan, investigan, redactan, revisan, producen y mantienen el conocimiento — todo con convenciones estrictas (frontmatter, wikilinks sin rotos, bitácoras, trazabilidad de fuentes).
